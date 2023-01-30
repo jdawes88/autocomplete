@@ -48,7 +48,7 @@ test('should update the input field on change and autocomplete with relevant boo
   );
 });
 
-test('should return the correct number if no matches are availeble', async () => {
+test('should autocomplete the correct set of cities initially and then clear results if no matches are availeble', async () => {
   const expectedCities = [
     'san jose',
     'santiago',
@@ -79,4 +79,19 @@ test('should return the correct number if no matches are availeble', async () =>
 
   expect(screen.getByRole('textbox').value).toBe('santy');
   expect(screen.queryAllByRole('listitem')).toEqual([]);
+});
+
+test('should not return a list of cities or books if there is no match and should inform the user that no matches were found', async () => {
+  setup();
+  const user = userEvent.setup();
+  const textInput = screen.getByRole('textbox');
+
+  await user.type(textInput, 'pot');
+  const noMatchedsearch = screen.getByText('No matches with your search');
+  const citiesList = screen.queryByText('Cities');
+  const books = screen.queryByText('Books');
+
+  expect(noMatchedsearch).toBeTruthy();
+  expect(citiesList).toBeFalsy();
+  expect(books).toBeFalsy();
 });

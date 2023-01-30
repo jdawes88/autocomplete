@@ -13,7 +13,6 @@
       <ul v-if="booksSearchStore.getBooksSearchResults.value.length !== 0">
         <h4>Books</h4>
         <li
-          v-list
           v-for="book in booksSearchStore.getBooksSearchResults.value"
           :key="book"
         >
@@ -21,13 +20,22 @@
         </li>
       </ul>
       <ul v-if="citiesSearchStore.getCitiesSearchResults.value.length !== 0">
-        <h5>Cities</h5>
+        <h4>Cities</h4>
         <li
           v-for="city in citiesSearchStore.getCitiesSearchResults.value"
           :key="city"
         >
-          {{ city }}
+          <p>{{ city }}</p>
         </li>
+      </ul>
+      <ul
+        v-else-if="
+          searchQuery.length >= 3 &&
+          citiesSearchStore.getCitiesSearchResults.value.length === 0 &&
+          booksSearchStore.getBooksSearchResults.value.length === 0
+        "
+      >
+        <h4>No matches with your search</h4>
       </ul>
     </div>
   </div>
