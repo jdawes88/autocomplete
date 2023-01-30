@@ -9,7 +9,7 @@ export const useBooksSearchStore = defineStore('bookSearch', () => {
 
   function updateBookSearchResults(searchQuery) {
     if (searchQuery.length < 3) {
-      booksSearchResults.value = []
+      booksSearchResults.value = [];
       return;
     }
     const bookResults = allBooks.value.filter((book) => {
@@ -22,6 +22,6 @@ export const useBooksSearchStore = defineStore('bookSearch', () => {
   return {
     updateBookSearchResults,
     booksSearchResults,
-    getBooksSearchResults
+    getBooksSearchResults,
   };
 });

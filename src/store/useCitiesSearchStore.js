@@ -1,20 +1,19 @@
-import { defineStore } from 'pinia'; 
+import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { cities } from './dataSets';
-
 
 export const useCitiesSearchStore = defineStore('citiesSearch', () => {
   const allCities = ref(cities);
   const citiesSearchResults = ref([]);
-  const getCitiesSearchResults = computed(() => citiesSearchResults)
+  const getCitiesSearchResults = computed(() => citiesSearchResults);
 
-  function updateCitiesSearchResults (searchQuery) {
+  function updateCitiesSearchResults(searchQuery) {
     if (searchQuery.length < 3) {
-      citiesSearchResults.value = []
+      citiesSearchResults.value = [];
       return;
     }
-    const citiesResults = allCities.value.filter(city => {
-      const regex = new RegExp(`^${searchQuery}(\\s|\\S|.*)(.*)`, "ig")
+    const citiesResults = allCities.value.filter((city) => {
+      const regex = new RegExp(`^${searchQuery}(\\s|\\S|.*)(.*)`, 'ig');
       return city.match(regex);
     });
     citiesSearchResults.value = citiesResults;
@@ -23,7 +22,6 @@ export const useCitiesSearchStore = defineStore('citiesSearch', () => {
   return {
     updateCitiesSearchResults,
     citiesSearchResults,
-    getCitiesSearchResults
-  }
-
-})
+    getCitiesSearchResults,
+  };
+});

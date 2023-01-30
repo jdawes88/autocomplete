@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import SearchPage from './components/SearchPage.vue'
+import SearchPage from './components/SearchPage.vue';
 </script>
 
 <style>
@@ -18,6 +18,5 @@ body {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  
 }
 </style>
